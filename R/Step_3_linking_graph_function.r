@@ -5,7 +5,7 @@ BCV_ttest3<-function(data0,rounds=20,slice0=2,maxrank0=30,msep_cut=0.001)
         fff_cc<-c()
         for(kk in 1:rounds)
         {
-                cv_result <- cv.svd.gabriel(x, slice0, slice0, maxrank = maxrank0)
+                cv_result <- bcv::cv.svd.gabriel(x, slice0, slice0, maxrank = maxrank0)
                 fff_cc<-rbind(fff_cc,cv_result$msep)
         }
         pp<-c()
