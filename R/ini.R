@@ -1,4 +1,4 @@
-#library(clue)
+##library(clue)
 #'@importFrom clue solve_LSAP
 pMatrix.min <- function(A, B) {##########not useful anymore
 ####This is to shuffle the rows of A so that A could be as close to B as possible;
@@ -59,11 +59,11 @@ calc.initial.UV_shuff<-function(X1,K,NMF_indi_all){
 #        aaa=kmeans(X1,centers=K,nstart=5)
 #        initial_V=t(aaa$centers)
 
-library(NMF)
+#library(NMF)
 	if(K>1){
 		res = nmf(X1, K)
 		initial_U=basis(res)
-		initial_V=t(coef(res))
+		initial_V=t(NMF::coef(res))
 	}else{
 		res=nmf1(X1)
 		initial_V=matrix(res,ncol=1)
@@ -93,11 +93,11 @@ calc.initial.FSG_shuff<-function(X1,K1,K2,NMF_indi_all){
 #	initial_F=t(aaa$centers)
 #	aaa=kmeans(X1,centers=K2,nstart=5)
 #	initial_G=t(aaa$centers)
-library(NMF)
+#library(NMF)
 	if(K>1){
 		res = nmf(X1, K1)
 		initial_F=basis(res)
-		initial_G=t(coef(res))
+		initial_G=t(NMF::coef(res))
 	}else{
 		res=nmf1(X1)
 		initial_G=matrix(res,ncol=1)

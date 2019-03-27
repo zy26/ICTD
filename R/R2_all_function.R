@@ -363,7 +363,7 @@ TIMER_TCGA <- function(cc = cancer_str){
 
 	##----- Combine TCGA gene expression profiles with the selected reference data, remove batch effect and aggregate samples of each immune category by taking the median -----##
 	RemoveBatchEffect <- function(){
-  		library(sva)
+  		#library(sva)
   		tmp.dd=as.matrix(dd)
   		tmp=sapply(strsplit(rownames(dd),'\\|'),function(x)x[[1]])
   		rownames(tmp.dd)=tmp
@@ -608,7 +608,7 @@ TIMER_sc <- function(cc = cancer_str, data.matrix = data.matrix){
 
 	##----- Combine TCGA gene expression profiles with the selected reference data, remove batch effect and aggregate samples of each immune category by taking the median -----##
 	RemoveBatchEffect <- function(){
-  		library(sva)
+  		#library(sva)
   		tmp.dd=as.matrix(dd)
   		tmp=sapply(strsplit(rownames(dd),'\\|'),function(x)x[[1]])
   		rownames(tmp.dd)=tmp
@@ -1176,9 +1176,9 @@ return(list(X1=X1, U=U, V=V, ttt1=ttt1))
 
 
 plot_cor_bar <- function(m_epic=epic.ccc,m_timer=timer.ccc,m_ictd=ictd.ccc,GSEname=dataSetName,check=overlap_mark){
-	library(ggplot2)
-	library(reshape2)
-	library(gridExtra)
+	#library(ggplot2)
+	#library(reshape2)
+	#library(gridExtra)
 
 	if(ncol(m_epic)!=ncol(m_timer) | ncol(m_epic)!=ncol(m_ictd) )
 		stop("dim of correlation matrix incorrect!chang")
@@ -1222,9 +1222,9 @@ plot_cor_bar <- function(m_epic=epic.ccc,m_timer=timer.ccc,m_ictd=ictd.ccc,GSEna
 }
 
 plot_bar_ES <- function(m_epic=epic.ccc,m_timer=timer.ccc,m_ictd=ictd.ccc,GSEname=dataSetName,check=overlap_mark,pp=pp_list){
-	library(ggplot2)
-	library(reshape2)
-	library(gridExtra)
+	#library(ggplot2)
+	#library(reshape2)
+	#library(gridExtra)
 
 	if(ncol(m_epic)!=ncol(m_timer) | ncol(m_epic)!=ncol(m_ictd) )
 		stop("dim of correlation matrix incorrect!chang")
@@ -1279,9 +1279,9 @@ plot_bar_ES <- function(m_epic=epic.ccc,m_timer=timer.ccc,m_ictd=ictd.ccc,GSEnam
 }
 
 plot_bar_ES_addtest <- function(m_epic=epic.ccc,m_timer=timer.ccc,m_ictd=ictd.ccc,GSEname=dataSetName,check=overlap_mark,pp=pp_list){
-	library(ggplot2)
-	library(reshape2)
-	library(gridExtra)
+	#library(ggplot2)
+	#library(reshape2)
+	#library(gridExtra)
 
 	if(ncol(m_epic)!=ncol(m_timer) | ncol(m_epic)!=ncol(m_ictd) )
 		stop("dim of correlation matrix incorrect!chang")

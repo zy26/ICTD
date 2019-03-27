@@ -17,7 +17,7 @@ tnmf_indisS_all_revise<-function(X1,initial_F,initial_S, initial_G,NMF_indi_all,
 ##iter
 ##epslog
 ##mscale
-library(pracma)
+#library(pracma)
 	K_common=NULL
 	if(mscale==1){
 		X1=t(apply(X1, MARGIN=1, function(x)x/median(x)))
@@ -217,7 +217,7 @@ tnmf_indisS_sub_revise<-function(X1,initial_F,initial_S, initial_G,NMF_indi_all,
 ##iter
 ##epslog
 ##K_common
-library(pracma)
+#library(pracma)
 	F=initial_F;
 	G=initial_G;
 	S=initial_S;
@@ -654,7 +654,7 @@ qnmf_indisS_all_revise<-function(X1,initial_U,initial_V,NMF_indi_all,indiS_metho
 ##qq
 ##iter
 ##epslog
-library(pracma)
+#library(pracma)
 	K_common=NULL
         if(mscale==1){
                 X1=t(apply(X1, MARGIN=1, function(x)x/median(x)))
@@ -852,7 +852,7 @@ qnmf_indisS_sub_revise<-function(X1,initial_U,initial_V,NMF_indi_all,indiS_metho
 ##iter
 ##epslog
 ##K_common
-library(pracma)
+#library(pracma)
 	U=initial_U; V=initial_V;
 	eps=10^(-epslog)
 	DU=diag(rowSums(UM)); DV=diag(rowSums(VM)) 
@@ -1176,7 +1176,7 @@ qnmf_indisS_all_MTL<-function(X1_list,K_vec, initial_U_list, initial_V_list,NMF_
 	return(ttt)
 }
 
-#library(nnls)
+##library(nnls)
 #'@importFrom nnls nnls
 cv_qnmf<-function(X,indiS_method,NMF_indi_all,alpha,beta,gamma,roh, theta,qq,iter,epslog, nPerm,mscale){
 ##X
@@ -1243,7 +1243,7 @@ qnmf_indisS_all_revise_addP_old<-function(X1,initial_U,initial_V,NMF_indi_all,in
 ##qq
 ##iter
 ##epslog
-library(pracma)
+#library(pracma)
 	K_common=NULL
 	K=ncol(NMF_indi_all)
         if(mscale==1){
@@ -1468,7 +1468,7 @@ qnmf_indisS_all_revise_addP<-function(X1,initial_U,initial_V,NMF_indi_all,indiS_
 ##qq
 ##iter
 ##epslog
-library(pracma)
+#library(pracma)
 	K_common=NULL
 	K=ncol(NMF_indi_all)
         if(mscale==1){
@@ -1720,7 +1720,7 @@ qnmf_indisS_all_revise_addP_RR<-function(X1,initial_U,initial_V,NMF_indi_all,ind
 ##qq
 ##iter
 ##epslog
-library(pracma)
+#library(pracma)
 	K_common=NULL
 	K=ncol(NMF_indi_all)
         if(mscale==1){

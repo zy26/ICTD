@@ -428,7 +428,7 @@ for(i in 1:length(MR_IM_result_c))
 }
 print("Select Marker Done!")
 #tg_RF2<-paste(tg_key_c,"_1rankmarker_cell_type_consistency.pdf",sep="")
-#library(gplots)
+##library(gplots)
 #colors = c(0:100)/100
 #my_palette <- grDevices::colorRampPalette(c("white","white", "blue"))(n =100)
 #pdf(tg_RF2)
@@ -511,7 +511,7 @@ for(i in 1:length(MR_IM_result_c))
 }
 print("Select Marker Done!")
 #tg_RF2<-paste(tg_key_c,"_1rankmarker_cell_type_consistency.pdf",sep="")
-#library(gplots)
+##library(gplots)
 #colors = c(0:100)/100
 #my_palette <- grDevices::colorRampPalette(c("white","white", "blue"))(n =100)
 #pdf(tg_RF2)

@@ -535,7 +535,7 @@ for(i in 1:length(MR_IM_result_c))
 }
 print("Select Marker Done!")
 #tg_RF2<-paste(tg_key_c,"_1rankmarker_cell_type_consistency.pdf",sep="")
-#library(gplots)
+##library(gplots)
 #colors = c(0:100)/100
 #my_palette <- grDevices::colorRampPalette(c("white","white", "blue"))(n =100)
 #pdf(tg_RF2)    
@@ -586,7 +586,7 @@ for(i in 1:length(MR_IM_result_c))
 }
 print("Select Marker Done!")
 #tg_RF2<-paste(tg_key_c,"_1rankmarker_cell_type_consistency.pdf",sep="")
-#library(gplots)
+##library(gplots)
 #colors = c(0:100)/100
 #my_palette <- grDevices::colorRampPalette(c("white","white", "blue"))(n =100)
 #pdf(tg_RF2)	
@@ -605,7 +605,7 @@ return(list_cc)
 
 BCV_selection_top_bases<-function(data_CORS_cancer,tg_key_c=tg_key_c,tg_1_rank_markers=tg_1_rank_markers,immune_cell_uni_table=immune_cell_uni_table0,hcutn=40)
 {
-library(bcv)
+#library(bcv)
 print("start BCV")
 pp_all<-list()
 cc_all<-c()
@@ -677,7 +677,7 @@ colnames(ccc)<-rownames(bbb_all)
 print(paste("1 rank bases and CORS done!Compute top",hcutn,"bases"))
 tg_F<-paste(tg_key_c,"_bases_correlation.pdf",sep="")
 pdf(tg_F)
-library(gplots)
+#library(gplots)
 colors = c(-100:100)/100
 my_palette <- grDevices::colorRampPalette(c("red","white", "blue"))(n =200)
 bbb_all0<-bbb_all[names(which(apply(ccc,2,max)>0.4)),]
@@ -768,7 +768,7 @@ calculate_growth_rate2<-function(x0,step=20)
 
 BCV_screen_top_bases<-function(data_CORS_cancer,tg_key_c=tg_key_c,tg_1_rank_markers=tg_1_rank_markers,immune_cell_uni_table=immune_cell_uni_table0,hcutn=40)
 {
-library(bcv)
+#library(bcv)
 print("start BCV")
 pp_all<-list()
 cc_all<-c()
@@ -1213,7 +1213,7 @@ R1_list_filtering_step2_BCV<-function(R1_marker_list_f2,data_CORS_cancer,cut10=0
 {
 
 cut1<-cut10
-#library(gplots)
+##library(gplots)
 #colors = c(0:100)/100
 #my_palette <- grDevices::colorRampPalette(c("white", "blue"))(n =100)
 
@@ -1271,7 +1271,7 @@ names(tg_cluster_genes)<-pn
 	cor3<-compute_adjusted_cor_all(tg_cluster_genes,data_CORS_cancer,qanth=0.5,qantl=0.5)
 	rownames(cor3)<-pn
 	colnames(cor3)<-pn
-	#library(gplots)
+	##library(gplots)
 	#colors = c(-100:100)/100
 	#my_palette <- grDevices::colorRampPalette(c("red","white", "blue"))(n =200)
 

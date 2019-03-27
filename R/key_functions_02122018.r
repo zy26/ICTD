@@ -243,7 +243,7 @@ for(i in 1:length(tg_lists))
 }
 rownames(ff_all)<-names(tg_lists)
 
-library(gplots)
+#library(gplots)
 colors = c(0:100)/100
 my_palette <- grDevices::colorRampPalette(c("white", "midnightblue"))(n =100)
 
@@ -292,7 +292,7 @@ for(ii in 1:length(tg_selected_BCs))
 		tg_col_c3<-c(tg_col_c3,rep(hmcols2[i],length(tg_samples_c)))
 		tg_row_c3<-c(tg_row_c3,rep(hmcols2[i],length(tg_genes_c)))
 	}
-	library(gplots)
+	#library(gplots)
 	colors = c(-100:100)/100
 	my_palette <- grDevices::colorRampPalette(c("red","white", "blue"))(n = 200)
 	colors2 = c(-100:100)/100
@@ -466,7 +466,7 @@ for(ii in 1:length(tg_selected_BCs))
 		tg_col_c3<-c(tg_col_c3,rep(hmcols2[i],length(tg_samples_c)))
 		tg_row_c3<-c(tg_row_c3,rep(hmcols2[i],length(tg_genes_c)))
 	}
-	library(gplots)
+	#library(gplots)
 	colors = c(-100:100)/100
 	my_palette <- grDevices::colorRampPalette(c("red","white", "blue"))(n = 200)
 	colors2 = c(-100:100)/100
@@ -844,7 +844,7 @@ if(nrow(ff_all)==1)
 }
 if(nrow(ff_all)>1)
 {
-library(gplots)
+#library(gplots)
 colors = c(0:100)/100
 my_palette <- grDevices::colorRampPalette(c("white", "midnightblue"))(n =100)
 

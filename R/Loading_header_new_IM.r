@@ -12,12 +12,12 @@
 #source("./coexpression_WGCNA_0.2.R")
 #source("./2018_05_05_find_cancer_module.r")
 
-library(gplots)
-library(bcv)
-library(igraph)
-library("estimate")
-library("WGCNA")
-library("tictoc")  #to use timer
+#library(gplots)
+#library(bcv)
+#library(igraph)
+#library(estimate)
+#library(WGCNA)
+#library(tictoc)  #to use timer
 
 .onLoad <- function(libname, pkgname) {
 	utils::data(IM_markers_20190302, package = pkgname, envir = parent.env(environment()))

@@ -32,7 +32,7 @@ getwd();
 workingDir = ".";
 #setwd(workingDir); 
 # Load the WGCNA package
-library(WGCNA)
+#library(WGCNA)
 # The following setting is important, do not omit.
 options(stringsAsFactors = FALSE);
 # Allow multi-threading within WGCNA. This helps speed up certain calculations.
