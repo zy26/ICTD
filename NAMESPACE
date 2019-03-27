@@ -1,0 +1,12 @@
+exportPattern("^[[:alpha:]]+")
+  importFrom("grDevices", "colorRampPalette", "colors", "dev.off", "pdf")
+  importFrom("graphics", "abline", "axis", "barplot", "boxplot", "hist",
+             "legend", "par", "plot", "plot.new", "plot.window",
+             "points", "rect", "segments", "text")
+  importFrom("stats", "as.dist", "coef", "coefficients", "cor",
+             "cor.test", "cutree", "dist", "dnorm", "fisher.test",
+             "hclust", "lm", "lsfit", "median", "p.adjust", "phyper",
+             "pnorm", "quantile", "rbinom", "runif", "sd", "t.test",
+             "var", "wilcox.test")
+  importFrom("utils", "combn", "head", "read.csv", "read.delim",
+             "read.table", "write.table")
