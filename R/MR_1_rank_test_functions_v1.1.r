@@ -315,7 +315,7 @@ BCV_ttest<-function(data0,rounds=20,slice0=2,maxrank0=30)
         fff_cc<-c()
         for(kk in 1:rounds)
         {
-                cv_result <- cv.svd.gabriel(x, slice0, slice0, maxrank = maxrank0)
+                cv_result <- bcv::cv.svd.gabriel(x, slice0, slice0, maxrank = maxrank0)
                 fff_cc<-rbind(fff_cc,cv_result$msep)
         }
         pp<-c()
@@ -616,7 +616,7 @@ for(j in 1:length(tg_1_rank_markers))
 	fff_cc<-c()
 	for(kk in 1:10)
 	{
-		cv_result <- cv.svd.gabriel(x, 3, 3, maxrank = 30)
+		cv_result <- bcv::cv.svd.gabriel(x, 3, 3, maxrank = 30)
 		fff_cc<-rbind(fff_cc,cv_result$msep)
 	}
 	pp<-c()
@@ -779,7 +779,7 @@ for(j in 1:length(tg_1_rank_markers))
         fff_cc<-c()
         for(kk in 1:10)
         {
-                cv_result <- cv.svd.gabriel(x, 3, 3, maxrank = 30)
+                cv_result <- bcv::cv.svd.gabriel(x, 3, 3, maxrank = 30)
                 fff_cc<-rbind(fff_cc,cv_result$msep)
         }
         pp<-c()
@@ -3132,7 +3132,7 @@ BCV_ttest2<-function(data0,rounds=20,slice0=2,maxrank0=30,msep_cut=0.001)
         fff_cc<-c()
         for(kk in 1:rounds)
         {
-                cv_result <- cv.svd.gabriel(x, slice0, slice0, maxrank = maxrank0)
+                cv_result <- bcv::cv.svd.gabriel(x, slice0, slice0, maxrank = maxrank0)
                 fff_cc<-rbind(fff_cc,cv_result$msep)
         }
         pp<-c()
