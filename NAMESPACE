@@ -10,4 +10,3 @@ exportPattern("^[[:alpha:]]+")
              "var", "wilcox.test")
   importFrom("utils", "combn", "head", "read.csv", "read.delim",
              "read.table", "write.table")
-  importFrom("nnls", "nnls")
