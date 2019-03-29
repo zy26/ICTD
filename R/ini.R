@@ -46,7 +46,7 @@ nmf1<-function(X){
 }
 
 
-
+#'@importFrom NMF basis
 calc.initial.UV_shuff<-function(X1,K,NMF_indi_all){
 #####function to initialize the U and V matrix for qNMF, and while an indicator matrix, NMF_indi_all, exists, would also shuffle the columns of U and V based on its similarity with the indicator matrix.
 #        aaa=kmeans(X1,centers=K,nstart=5)
@@ -84,7 +84,7 @@ calc.initial.UV_shuff<-function(X1,K,NMF_indi_all){
         names(aaa)=c("initial_U", "initial_V")
         return(aaa)
 }
-
+#'@importFrom NMF basis
 calc.initial.FSG_shuff<-function(X1,K1,K2,NMF_indi_all){
 #####function to initialize the F and S matrix for tNMF, and while an indicator matrix, NMF_indi_all, exists, would also shuffle the columns of F and G based on its similarity with the indicator matrix.
 #	aaa=kmeans(X1,centers=K1,nstart=5)
