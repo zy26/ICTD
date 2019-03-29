@@ -61,7 +61,7 @@ calc.initial.UV_shuff<-function(X1,K,NMF_indi_all){
 
 #library(NMF)
 	if(K>1){
-		res = nmf(X1, K)
+		res = NMF::nmf(X1, K)
 		initial_U=basis(res)
 		initial_V=t(NMF::coef(res))
 	}else{
