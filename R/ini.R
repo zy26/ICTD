@@ -62,7 +62,7 @@ calc.initial.UV_shuff<-function(X1,K,NMF_indi_all){
 #library(NMF)
 	if(K>1){
 		res = NMF::nmf(X1, K)
-		initial_U=basis(res)
+		initial_U=NMF::basis(res)
 		initial_V=t(NMF::coef(res))
 	}else{
 		res=nmf1(X1)
@@ -95,8 +95,8 @@ calc.initial.FSG_shuff<-function(X1,K1,K2,NMF_indi_all){
 #	initial_G=t(aaa$centers)
 #library(NMF)
 	if(K>1){
-		res = nmf(X1, K1)
-		initial_F=basis(res)
+		res = NMF::nmf(X1, K1)
+		initial_F=NMF::basis(res)
 		initial_G=t(NMF::coef(res))
 	}else{
 		res=nmf1(X1)
