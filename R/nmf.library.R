@@ -620,7 +620,7 @@ tnmf_indisS_all_MTL<-function(X1_list,initial_F_list,initial_S_list, initial_G_l
 	names(ttt)=c("initial_F_list","initial_S_list","initial_G_list","F_list","S_list","G_list","objs_mat","rmse")
 	return(ttt)
 }
-
+#'@importFrom nnls nnls
 compute.V<-function(X,U){
         r=ncol(U)
         res.mat=X*0
