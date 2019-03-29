@@ -627,7 +627,7 @@ compute.V<-function(X,U){
         coff.mat=res.mat[1:r,,drop=FALSE]
         for(k in 1:ncol(X)){
                 y=X[,k,drop=FALSE]
-                fit=nnls(U, y)
+                fit=nnls::nnls(U, y)
                 alpha=coef(fit)
                 coff.mat[,k]=alpha
         }
