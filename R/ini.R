@@ -157,9 +157,9 @@ initialize_mats<-function(input,K,K_common,ddim,NMF_indi_all){
 					initial_U[,j]=initial_U[,j]/sqrt(sum((initial_U[,j])^2))
 				}
 				initial_V=compute.V(X1, initial_U)
-				print("The initial U,V")
-				print(head(initial_U))
-				print(head(initial_V))
+				#print("The initial U,V")
+				#print(head(initial_U))
+				#print(head(initial_V))
 		                initial_U_list[[i]]=initial_U
 		                initial_V_list[[i]]=initial_V
 		        }
@@ -209,9 +209,9 @@ initialize_mats<-function(input,K,K_common,ddim,NMF_indi_all){
 				initial_V[,j]=initial_V[,j]*sqrt(sum((initial_U[,j])^2))
 				initial_U[,j]=initial_U[,j]/sqrt(sum((initial_U[,j])^2))
 			}
-			print("The initial U,V")
-			print(head(initial_U))
-			print(head(initial_V))	#bug: V has wrong colname
+			#print("The initial U,V")
+			#print(head(initial_U))
+			#print(head(initial_V))	#bug: V has wrong colname
 			
 			ini_list=list(initial_U,initial_V)
 			names(ini_list)=c("initial_U","initial_V")

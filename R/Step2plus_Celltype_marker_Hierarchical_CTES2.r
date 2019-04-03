@@ -30,8 +30,8 @@ Step2plus_Celltype_marker_Hierarchical_CTES3<-function(tg_R1_lists,data_CORS_can
 
 	BCV_stat_c<-BCV_ttest3(data_23_s,rounds=100,slice0=4,maxrank0=30,msep_cut=0.0001)
 	dim_tt<-sum(BCV_stat_c[[1]]<0.01)
-	print("Total Cell Dim")
-	print(dim_tt)
+	#print("Total Cell Dim")
+	#print(dim_tt)
 
 	NN_ES_table_R4<-Explanation_BASE(data_23_s,tg_selected_R4)
 	tg_ES_scores<-diag(NN_ES_table_R4)
@@ -43,7 +43,6 @@ Step2plus_Celltype_marker_Hierarchical_CTES3<-function(tg_R1_lists,data_CORS_can
 	root_leaf[["Other_leat_CT"]]
 	tg_possible_base_ids<-sort(root_leaf[["Leaf_CT"]])
 	tg_selected_R4_DFB<-select_R_base(tg_selected_R4,tg_possible_base_ids)
-
 	STAT_c<-list()
 	for(i in 1:length(tg_possible_base_ids))
 	{
@@ -60,12 +59,11 @@ Step2plus_Celltype_marker_Hierarchical_CTES3<-function(tg_R1_lists,data_CORS_can
 	#apply(d9n,2,max)
 
 	#############################################
-	dim_diff<-dim_tt-length(CTES0)+ext_cn
-	print(paste("old_version, dim_diff:", dim_diff, sep=""))
-	######dim_diff<-(dim_tt-length(CTES0))*((dim_tt-length(CTES0))>0)+ext_cn
-	dim_diff_new <-  (dim_tt-length(CTES0))*((dim_tt-length(CTES0))>0)+ext_cn
-	print(paste("new_version, dim_diff:", dim_diff_new, sep=""))
-
+	#dim_diff<-dim_tt-length(CTES0)+ext_cn
+	#print(paste("old_version, dim_diff:", dim_diff, sep=""))
+	dim_diff<-(dim_tt-length(CTES0))*((dim_tt-length(CTES0))>0)+ext_cn
+	#dim_diff_new <-  (dim_tt-length(CTES0))*((dim_tt-length(CTES0))>0)+ext_cn
+	#print(paste("new_version, dim_diff:", dim_diff_new, sep=""))
 
 	#par(mfcol=c(2,6))
 	ROUNDS<-3

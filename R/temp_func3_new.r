@@ -76,7 +76,7 @@ Base_screen<-function(bbb_all0,hh,tg_R1_list_stat)
         R1_selected_c<-c()
         for(i in 1:length(ttt))
         {
-                print(i)
+                #print(i)
                 cc<-names(which(hh==ttt[i]))
                 merge_list_info[[i]]<-list(cc,1)
                 if(length(cc)==1)
@@ -616,7 +616,7 @@ resolution_level=resolution_level0,hcutn0=40,hclust_cor_cut=0.95,IM_reso_level=I
             tg_R1_lists_st[[i]]<-tg_R1_lists_st[[i]][1:min(length(tg_R1_lists_st[[i]]),tg_R1_cut)]
        }
 
-        print("Compute_total_rank!")
+        #print("Compute_total_rank!")
         tg_all_genes<-c()
         for(i in 1:length(tg_R1_lists_st))
         {
@@ -625,10 +625,9 @@ resolution_level=resolution_level0,hcutn0=40,hclust_cor_cut=0.95,IM_reso_level=I
         tg_all_genes<-unique(tg_all_genes)
         tg_data_ccc<-data_CORS_cancer[tg_all_genes,]
         BCV_stat_c<-BCV_ttest3(tg_data_ccc,rounds=100,slice0=4,maxrank0=30,msep_cut=0.0001)
-        dim_tt<-sum(BCV_stat_c[[1]]<0.01)
-        
-        print("Total Cell Dim")
-        print(dim_tt)
+        dim_tt<-sum(BCV_stat_c[[1]]<0.01)   
+        #print("Total Cell Dim")
+        #print(dim_tt)
 
   NN_ES_table_R4<-Explanation_BASE(data_CORS_cancer,tg_R1_lists_st)
   tg_ES_scores<-diag(NN_ES_table_R4)
@@ -651,10 +650,8 @@ resolution_level=resolution_level0,hcutn0=40,hclust_cor_cut=0.95,IM_reso_level=I
         hcutn0<-min(hcutn0,nrow(bbb_all0))
         hcutn0<-min(hcutn0,dim_tt)
         data_genes_all<-data_CORS_cancer[tg_all_genes,]
-        hcutn1<-min(hcutn0+extra_ctn,nrow(bbb_all0))
-	  
-        hclust_R1_screen<-hclust_screen_top_bases(bbb_all0,data_genes_all,hcutn=hcutn1)
-       
+        hcutn1<-min(hcutn0+extra_ctn,nrow(bbb_all0)) 
+        hclust_R1_screen<-hclust_screen_top_bases(bbb_all0,data_genes_all,hcutn=hcutn1)	
 	  R1_hhh<-hclust_R1_screen[[3]]
         ccc<-c()
         for(i in 1:length(hclust_R1_screen[[1]]))
@@ -666,11 +663,11 @@ resolution_level=resolution_level0,hcutn0=40,hclust_cor_cut=0.95,IM_reso_level=I
         R_bases_hclust_top_correlations<-ccc
         hcutn2<-max(which(R_bases_hclust_top_correlations<hclust_cor_cut))
 	  hcutn2<-min(hcutn2,hcutn1)
-	  print("hcut0")
-	  print(c(hcutn0,hcutn1,hcutn2))
+	  #print("hcut0")
+	  #print(c(hcutn0,hcutn1,hcutn2))
         hh<-hclust_R1_screen[[3]][[hcutn2]]
 
-        Base_hclust_screen_result<-Base_screen(bbb_all0,hh,tg_R1_list_stat)
+        Base_hclust_screen_result<-Base_screen(bbb_all0,hh,tg_R1_list_stat)	
         tg_selected_Bases<-c()
   for(i in 1:length(Base_hclust_screen_result[[2]]))
   {
@@ -692,7 +689,6 @@ for(i in 1:length(rest_cell_types))
 }
 names(ccc)<-rest_cell_types
 }
-       
 R1_list_c1<-list()
 for(i in 1:length(Base_screen_selected))
 {
@@ -711,5 +707,5 @@ names(R1_list_c2)<-names(ccc)
 }
         cc<-list(R1_list_c1,R1_list_c2,Base_screen_selected,ccc,dim_tt,length(Base_screen_selected),Base_hclust_screen_result)
         names(cc)<-list("tg_R1_selected_ES","tg_R1_selected_extra_CT","tg_R1_selected_ES_ids","tg_R1_selected_extra_CT_ids","Inferred_CT_dimension","Forced_CT_number","Base_hclust_screen_result")
-        return(cc)
+		return(cc)
 } 

@@ -1760,7 +1760,7 @@ qnmf_indisS_all_revise_addP_RR<-function(X1,initial_U,initial_V,NMF_indi_all,ind
 	}
 	colnames(initial_U)=colnames(NMF_indi_all)
 	colnames(initial_V)=colnames(NMF_indi_all)	#chang
-	print(dim(initial_V))
+	#print(dim(initial_V))
 	GL.list.qnmf = initialize_GL(X1,K,"qnmf")
 	if(is.matrix(UM)){
 		DU=diag(rowSums(UM))

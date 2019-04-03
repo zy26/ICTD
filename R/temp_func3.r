@@ -444,7 +444,7 @@ resolution_level=resolution_level0,hcutn0=40,hclust_cor_cut=0.95,IM_reso_level=I
             tg_R1_lists_st[[i]]<-tg_R1_lists_st[[i]][1:min(length(tg_R1_lists_st[[i]]),tg_R1_cut)]
        }
 
-        print("Compute_total_rank!")
+       # print("Compute_total_rank!")
         tg_all_genes<-c()
         for(i in 1:length(tg_R1_lists_st))
         {
@@ -455,8 +455,8 @@ resolution_level=resolution_level0,hcutn0=40,hclust_cor_cut=0.95,IM_reso_level=I
         BCV_stat_c<-BCV_ttest3(tg_data_ccc,rounds=100,slice0=4,maxrank0=30,msep_cut=0.0001)
         dim_tt<-sum(BCV_stat_c[[1]]<0.01)
         
-        print("Total Cell Dim")
-        print(dim_tt)
+       # print("Total Cell Dim")
+       # print(dim_tt)
 
 	  NN_ES_table_R4<-Explanation_BASE(data_CORS_cancer,tg_R1_lists_st)
 	  tg_ES_scores<-diag(NN_ES_table_R4)

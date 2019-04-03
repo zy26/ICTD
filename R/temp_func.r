@@ -367,9 +367,9 @@ for(i in 1:hcutn0)
 			{
 				ttt_c<-tg_trunc_RS_bases[j,]%*%t(tg_trunc_RS_bases[j,])/sum((tg_trunc_RS_bases[j,])^2)
 				ccc<-cbind(ccc,RMSE_row(aaa%*%ttt_c)/RMSE_row(aaa))
-				print(c(i,j))
+				#print(c(i,j))
 			}
-        	}
+        }
 		RMSE_IM[[i]]<-ccc
 	}
 }
@@ -381,7 +381,7 @@ tg_ids<-c(tg_ids,nrow(bbb_all0))
 for(i in 1:length(tg_ids))
 {
 	N<-N+1
-	print(c(N,tg_ids[i]))
+	#print(c(N,tg_ids[i]))
 	fff<-cutree(h,tg_ids[i])
 	hclust_info[[N]]<-fff
 	fff0<-unique(fff)
