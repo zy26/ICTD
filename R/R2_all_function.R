@@ -1159,7 +1159,7 @@ cnormalize=1
 ###########
 
 ###########Run the constrained qNMF
-ttt1=qnmf_indisS_all_revise_addP_pkg(X1,initial_U,initial_V,NMF_indi_all,indiS_method,UM,VM,alpha,beta,gamma,roh,theta,qq,iter,epslog,mscale,cnormalize,addP, P_fix)
+ttt1=qnmf_indisS_all_revise_addP(X1,initial_U,initial_V,NMF_indi_all,indiS_method,UM,VM,alpha,beta,gamma,roh,theta,qq,iter,epslog,mscale,cnormalize,addP, P_fix)
 ###########
 X1=ttt1$X1
 U=ttt1$U
