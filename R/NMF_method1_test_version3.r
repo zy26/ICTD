@@ -160,7 +160,7 @@ NMF_method1_test_version3_pkg<-function(tg_list, data_ng, data_normalized,max_ES
                 NMF_list_c<-select_R_base(tg_selected_R4_RR,tg_selected_id)
                 names(NMF_list_c)<-names(tg_selected_R4_RR)[tg_selected_id]     #?????
                 NMF_self_c1<-Building_NMF_input_no_cancer(tg_data=data.matrix0_s,tg_list=NMF_list_c,tg_list_add=list())
-                qnmf_result_c_temp <- run_NMF_r2(NMF_self_c1,maxIter=20000)
+                qnmf_result_c_temp <- run_NMF_r2(NMF_self_c1,RR0=NMF_RR,maxIter=20000, tProp)
                 U_temp = qnmf_result_c_temp[["U"]]
                 V_temp = qnmf_result_c_temp[["V"]]
                 ########check correlation between: V and true Proportion
