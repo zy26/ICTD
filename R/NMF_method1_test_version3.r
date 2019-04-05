@@ -197,9 +197,9 @@ NMF_method1_test_version3_pkg<-function(tg_list, data_ng, data_normalized,max_ES
                                 ES_base_c[tg_id_del]<-0
                         }
                         ES_max<-max(ES_base_c)
-                        ictd.ccc= t(cor(t(tProp),V) ) 
-                        o6_predict_ture = apply(ictd.ccc, 1, max)
-                        o6_predict_ture2 = apply(ictd.ccc, 2, max)
+                        #ictd.ccc= t(cor(t(tProp),V) ) 
+                        #o6_predict_ture = apply(ictd.ccc, 1, max)
+                        #o6_predict_ture2 = apply(ictd.ccc, 2, max)
                        	#print("!!!!!!!!!!!!!!!!!!!!!!")
 				#print(N)
 				#print("!!!!!!!!!!!!!!!!!!!!!!")
