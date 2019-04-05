@@ -1124,55 +1124,7 @@ save_R4_marker <- function(R4_list = R1_filter_step1_results_new[[4]]){
 # [1] "LRMP"     "DLGAP5"   "TCL1A"    "FCRLA"    "KIAA0922" "HMGB1"    "DTX1"     "CDKN3"    "DEPDC1"   "TPX2"   
 
 
-run_NMF_r2 <- function(NMF_input1=NMF_input1, maxIter=20000){
 
-###########Preprocess the data
-P_fix=NMF_input1$S_indi
-NMF_indi_all = NMF_input1$NMF_indi_all
-
-data_t=NMF_input1$NMF_data
-addP=NMF_input1$NMF_P_pre
-NMF_indi_all0<-NMF_indi_all[which(apply(NMF_indi_all,1,sum)<=2),]
-NMF_indi_all01<-NMF_indi_all0[,which(apply(NMF_indi_all0,2,sum)>0 | P_fix==0)] #?????0#######if 5 is okay, originally it was 10
-NMF_indi_all01<-NMF_indi_all01[which(apply(NMF_indi_all01,1,sum)>0),]
-NMF_indi_all=NMF_indi_all01[rownames(NMF_indi_all01)%in%rownames(data_t),]
-X1=data_t[match(rownames(NMF_indi_all),rownames(data_t)),]###take only those rows that correspond to rows in NMF_indi_all
-K=ncol(NMF_indi_all)
-indiS=1-NMF_indi_all
-indiS[,which(P_fix==0)]=0*indiS[,which(P_fix==0)]
-###########
-	
-###########Parameter settings
-theta=500 ##penalty parameter for constraints on NMF_indi_all
-indiS_method="nonprdescent" ##the updating scheme for the structural constraints
-iter=maxIter
-alpha=beta=gamma=roh=0
-#gamma=0.1
-#roh=0.1 ##roh has to be equal to 0 in order to implement addP
-UM=VM=NULL
-qq=1
-epslog=8
-nPerm=2
-initial_U=initial_V=NULL
-mscale=0###########1
-cnormalize=1
-###########
-
-###########Run the constrained qNMF
-ttt1=qnmf_indisS_all_revise_addP(X1,initial_U,initial_V,NMF_indi_all,indiS_method,UM,VM,alpha,beta,gamma,roh,theta,qq,iter,epslog,mscale,cnormalize,addP, P_fix)
-###########
-X1=ttt1$X1
-U=ttt1$U
-V=ttt1$V
-#sum((X1-(ttt1$U)%*%t(ttt1$V))^2)
-#diag(cor(ttt1$U,NMF_indi_all, method="spearman"))
-###########Run cross validation of the constrained qNMF
-#devs1=cv_qnmf(X1,indiS_method,NMF_indi_all,alpha,beta,gamma,roh,theta,qq,iter,epslog,nPerm,mscale,cnormalize)
-#############################################
-
-return(list(X1=X1, U=U, V=V, ttt1=ttt1))
-
-}
 
 
 plot_cor_bar <- function(m_epic=epic.ccc,m_timer=timer.ccc,m_ictd=ictd.ccc,GSEname=dataSetName,check=overlap_mark){
@@ -1608,4 +1560,308 @@ extend_marker_from_R1 <- function(cell_marker_i, R1_filter_step1_results_new)
 	return(new_cell_mark)
 }
 
+run_NMF_r2 <- function(NMF_input1=NMF_input1, RR0=0.8, maxIter=20000){
 
+###########Preprocess the data
+P_fix=NMF_input1$S_indi
+NMF_indi_all = NMF_input1$NMF_indi_all
+
+data_t=NMF_input1$NMF_data
+addP=NMF_input1$NMF_P_pre
+NMF_indi_all0<-NMF_indi_all[which(apply(NMF_indi_all,1,sum)<=2),]
+NMF_indi_all01<-NMF_indi_all0[,which(apply(NMF_indi_all0,2,sum)>0 | P_fix==0)] #?????0#######if 5 is okay, originally it was 10
+NMF_indi_all01<-NMF_indi_all01[which(apply(NMF_indi_all01,1,sum)>0),]
+NMF_indi_all=NMF_indi_all01[rownames(NMF_indi_all01)%in%rownames(data_t),]
+X1=data_t[match(rownames(NMF_indi_all),rownames(data_t)),]###take only those rows that correspond to rows in NMF_indi_all
+K=ncol(NMF_indi_all)
+indiS=1-NMF_indi_all
+indiS[,which(P_fix==0)]=0*indiS[,which(P_fix==0)]
+###########
+	
+###########Parameter settings
+RR = RR0
+theta=500 ##penalty parameter for constraints on NMF_indi_all
+indiS_method="nonprdescent" ##the updating scheme for the structural constraints
+iter=maxIter
+alpha=beta=gamma=roh=0
+#gamma=0.1
+#roh=0.1 ##roh has to be equal to 0 in order to implement addP
+UM=VM=NULL
+qq=1
+epslog=8
+nPerm=2
+initial_U=initial_V=NULL
+mscale=0###########1
+cnormalize=1
+###########
+
+###########Run the constrained qNMF
+#ttt1=qnmf_indisS_all_revise_addP(X1,initial_U,initial_V,NMF_indi_all,indiS_method,UM,VM,alpha,beta,gamma,roh,theta,qq,iter,epslog,mscale,cnormalize,addP, P_fix)
+ttt1=qnmf_indisS_all_revise_addP_RR_pkg(X1,initial_U,initial_V,NMF_indi_all,indiS_method,UM,VM,alpha,beta,gamma,roh,RR,qq,iter,epslog,mscale,cnormalize,addP, P_fix)
+###########
+X1=ttt1$X1
+U=ttt1$U
+V=ttt1$V
+#sum((X1-(ttt1$U)%*%t(ttt1$V))^2)
+#diag(cor(ttt1$U,NMF_indi_all, method="spearman"))
+###########Run cross validation of the constrained qNMF
+#devs1=cv_qnmf(X1,indiS_method,NMF_indi_all,alpha,beta,gamma,roh,theta,qq,iter,epslog,nPerm,mscale,cnormalize)
+#############################################
+
+return(list(X1=X1, U=U, V=V, ttt1=ttt1))
+
+}
+
+
+##############cross-validation
+#################add fixed rows of P,basically the same as qnmf_indisS_all_revise_addP, but theta parameter is changed.
+qnmf_indisS_all_revise_addP_RR_pkg<-function(X1,initial_U,initial_V,NMF_indi_all,indiS_method,UM,VM,alpha,beta,gamma,roh,RR,qq, iter, epslog,mscale, cnormalize, addP, P_fix){
+##########This is for qua matrix factorization, indiS is an indicator matrix equal to 1-NMF_indi_all; indiS_method has two options, either project descent, or gradient descent; theta is the penalty on similarity of U and NMF_indi_all matrix; qq is the value controling the updating scheme; 
+##X1: original matrix 
+##initial_U
+##initial_V
+##NMF_indi_all
+##indiS_method
+##UM
+##DU
+##VM
+##DV
+##alpha
+##beta
+##gamma
+##roh
+##theta
+##qq
+##iter
+##epslog
+#library(pracma)
+	K_common=NULL
+	K=ncol(NMF_indi_all)
+        if(mscale==1){
+                X1=t(apply(X1, MARGIN=1, function(x)x/median(x)))
+        }
+	indiS=1-NMF_indi_all
+	indiS[,which(P_fix==0)]=0*indiS[,which(P_fix==0)]
+	if(is.matrix(initial_U) & is.matrix(initial_V)){##both initial U and V are given
+	}else{
+		if(is.matrix(initial_U)){ ##only initial U is given
+			initial_V=compute.V(X1, initial_U)
+		}else if(is.matrix(initial_V)){ ##only initial V is given
+			initial_U=(compute.V(t(X1),initial_V))
+		}else{ ##none of initial U or V is given
+			MMM=1###MMM=2 is the worst, could pick between 1 and 2
+			if(MMM==1){ ##gives better fitting
+				NMF_indi_all1=NMF_indi_all
+				inis.list.qnmf=initialize_mats(X1,ncol(NMF_indi_all1),ncol(NMF_indi_all),"qnmf",NMF_indi_all1)
+				initial_U=inis.list.qnmf[["initial_U"]]
+				initial_V=inis.list.qnmf[["initial_V"]]
+				initial_V[,which(P_fix==0)]=t(addP[which(P_fix==0),])
+				initial_U=(compute.V(t(X1),initial_V))
+			}else if(MMM==2){ ##gives better similarity to NMF_indi_all
+				NMF_indi_all1=NMF_indi_all[,which(P_fix==1)]
+				inis.list.qnmf=initialize_mats(X1,ncol(NMF_indi_all1),K_common,"qnmf",NMF_indi_all1)
+				initial_U=inis.list.qnmf[["initial_U"]]
+				initial_V=cbind(compute.V(X1, initial_U),t(addP[which(P_fix==0),]))
+				initial_U=(compute.V(t(X1),initial_V))
+			}else{
+				initial_U=(compute.V(t(X1),t(addP[which(P_fix==0),])))
+				initial_U=cbind(NMF_indi_all[,which(P_fix==1)],initial_U)
+				initial_V=compute.V(X1, initial_U)
+				initial_V[,which(P_fix==0)]=t(addP[which(P_fix==0),])
+				initial_U=(compute.V(t(X1),initial_V))
+			}
+		}
+	}
+	colnames(initial_U)=colnames(NMF_indi_all)
+	colnames(initial_V)=colnames(NMF_indi_all)	#chang
+	#print(dim(initial_V))
+	GL.list.qnmf = initialize_GL(X1,K,"qnmf")
+	if(is.matrix(UM)){
+		DU=diag(rowSums(UM))
+	}else{
+		UM=GL.list.qnmf[["UM"]]
+		DU=diag(rowSums(UM))
+	}
+	if(is.matrix(VM)){
+		DV=diag(rowSums(VM))
+	}else{
+		VM=GL.list.qnmf[["VM"]]
+		DV=diag(rowSums(VM))
+	}
+
+	U=initial_U; V=initial_V;
+####Check the initial residuals
+	Xpred=U%*%t(V)
+	#print("This is the first iteration")
+	#print(paste("The fitting residual is", sum((Xpred-X1)^2)))
+	#print("This is the second iteration")
+####Check the initial residuals
+	objs=NULL; objs.parts=NULL
+	flag=0
+	rrr=0
+	eps=10^(-epslog) 
+	extraOut=NULL
+	extraOut_rnames=NULL
+
+#######run for the first time
+	theta=RR*sum((X1-U%*%t(V))^2)/(2*sum(diag(t(U)%*%indiS)))
+	s1=sum((X1-U%*%t(V))^2)
+	s21=sum((U-initial_U)^2); s22=sum((V-initial_V)^2);
+	s2=s21*alpha+s22*beta
+	s31=sum(diag(t(U)%*%(DU-UM)%*%U)); s32=sum(diag(t(V)%*%(DV-VM)%*%V)); 
+	s3=s31*gamma+s32*roh
+	s4=2*theta*sum(diag(t(U)%*%indiS))
+	obj_tmp=s1+s2+s3+s4
+
+	objs=c(objs,obj_tmp)
+	#extraOut=rbind(extraOut, c(apply(cor(t(tProp),V),1,max), s1,s4  ))
+	#extraOut_rnames=c(extraOut_rnames, 0)
+########run for the first time
+	while(flag==0 & rrr<iter){
+		rrr=rrr+1
+		old_U = U;old_V = V;
+		if(gamma>0){
+			updateU="multiplicative"
+		}else{
+			updateU="HALS-col"
+		}
+		if(updateU=="multiplicative"){
+			#optimize U by fixing V;
+			a_U = (X1%*%V + alpha*initial_U + gamma*UM%*%U);
+			b_U = (U%*%t(V)%*%V+alpha*U+ gamma*DU%*%U);
+	                if(indiS_method=="prdescent"){
+				b_U[b_U<eps]=eps
+	                        update_U = (a_U/b_U)^qq;
+	                        update_U = update_U*NMF_indi_all
+	                }else{
+	                        b_U=b_U+theta*indiS
+				b_U[b_U<eps]=eps
+	                        update_U = (a_U/b_U)^qq;
+	                }
+			U[U<eps]=eps #This value is very important! Because in multiplicative update, if you get a zero, it won't be updated at any further step;
+			#update_U[update_U<eps]=eps
+			U  = U * update_U;
+			#Normalization
+		}
+		if(updateU=="HALS-col"){
+		#	U[U<eps]=eps
+			for(i in 1:ncol(U)){
+				tmp.mat=NULL
+				for(j in 1:ncol(V)){
+					if(j!=i){
+						tmp=sum(V[,j]*V[,i])*U[,j]
+						tmp.mat=cbind(tmp.mat, tmp)
+					}
+				}
+				a_U=-matrix(apply(tmp.mat,MARGIN=1, sum), ncol=1)+X1%*%V[,i,drop=FALSE]+alpha*initial_U[,i,drop=FALSE]
+		                if(indiS_method=="prdescent"){
+					b_U=(sum(V[,i]*V[,i])+alpha)
+					b_U[b_U<eps]=eps
+					update_U=a_U/b_U
+		                        update_U = update_U*(NMF_indi_all[,i]) ###force those entries that are zero in NMF_indi_all matrix to be zero
+		                }else{
+                			a_U=a_U-theta*indiS[,i]
+					b_U=(sum(V[,i]*V[,i])+alpha)
+					b_U[b_U<eps]=eps
+					update_U=a_U/b_U
+		                }
+				update_U = update_U*(update_U>0)
+				if(cnormalize==1){ ####
+				#if(cnormalize==1 & P_fix[i]==1){ ####
+					update_U[update_U<eps]=eps ####
+					V[,i]=V[,i]*sqrt(sum(update_U^2))##############!!!!!!!!!!!???????
+					update_U=update_U/sqrt(sum(update_U^2)) ####
+				} ###
+				#update_U[update_U<eps]=eps
+				U[,i]=update_U
+			}
+		}
+		if(roh>0){
+			updateV="multiplicative"
+		}else{
+			updateV="HALS-col"
+		}
+		if(updateV=="multiplicative"){
+			#optimize V by fixing U;
+			a_V = (t(X1)%*%U +beta*initial_V + roh*VM%*%V);
+			b_V = (V%*%t(U)%*%U +beta*V+ roh*DV%*%V);
+			b_V[b_V<eps]=eps
+			update_V = (a_V/b_V)^qq;
+			#update_V[update_V<eps]=eps
+			#update_V = (a_V/b_V);
+			V[V<eps]=eps
+			V  = V * update_V;
+			#Normalization
+		}
+		if(updateV=="HALS-col"){
+		#	V[V<eps]=eps
+			for(i in 1:ncol(V)){
+				#if(P_fix[i]==1){
+					tmp.mat=NULL
+					for(j in 1:ncol(U)){
+						if(j!=i){
+							tmp=sum(U[,j]*U[,i])*V[,j]
+							tmp.mat=cbind(tmp.mat, tmp)
+						}
+					}
+					a_V=-matrix(apply(tmp.mat,MARGIN=1, sum), ncol=1)+t(X1)%*%U[,i,drop=FALSE]+beta*initial_V[,i,drop=FALSE]
+					b_V=(sum(U[,i]*U[,i])+beta)
+					b_V[b_V<eps]=eps
+					update_V=a_V/b_V
+					update_V = update_V*(update_V>0)
+	#			print(update_V)
+					update_V[update_V<eps]=eps
+					V[,i]=update_V
+				#}
+			}
+		}
+		
+		s1=sum((X1-U%*%t(V))^2)
+		s21=sum((U-initial_U)^2); s22=sum((V-initial_V)^2);
+		s2=s21*alpha+s22*beta
+		s31=sum(diag(t(U)%*%(DU-UM)%*%U)); s32=sum(diag(t(V)%*%(DV-VM)%*%V)); 
+		s3=s31*gamma+s32*roh
+		s4=2*theta*sum(diag(t(U)%*%indiS))
+		obj_tmp=s1+s2+s3+s4
+
+		objs=c(objs,obj_tmp)
+		#objs.parts=rbind(objs.parts,s1, s21,s22,s31,s32,s4)
+		objs.parts=rbind(objs.parts, matrix(c(s1,s21,s22,s31,s32,s4),nrow=1))
+		#print(res)
+		if(is.finite(sum(objs))){
+			if(rrr>5){
+				if(abs(objs[length(objs)]-objs[length(objs)-1])<0.01){
+					flag=1
+				}
+			}
+		}else{
+			flag=1
+			print("The program is killed because of singular updates")
+		}
+		
+		Xpred=U%*%t(V)
+#		print(paste("The fitting residual is", sum((Xpred-X1)^2)))
+	#	if(rrr%%10==0){
+	#		extraOut=rbind(extraOut, c(apply(cor(t(tProp),V),1,max), s1,s4  ))
+	#		extraOut_rnames=c(extraOut_rnames, rrr)
+	#		print(c(apply(cor(t(tProp),V),1,max), s1,s4  ))
+	#	}
+	}
+####run for the last time
+	#extraOut=rbind(extraOut, c(apply(cor(t(tProp),V),1,max), s1,s4  ))
+	#extraOut_rnames=c(extraOut_rnames, rrr)
+####run for the last time
+	#rownames(extraOut)=extraOut_rnames
+	rmse=sum((Xpred-X1)^2)
+	#print(paste("This is the",rrr,"th iteraction"))
+	#print(paste("The objective function is", obj_tmp))
+	#print(paste("The parameters alpha, beta, gamma, roh, theta,qq, iter, are:",paste(c(alpha, beta, gamma, roh, theta,qq, iter),collapse=" ")))
+#	print(paste("The residual is ",res,collapse=" "))
+	#print(paste("The residual is ",paste(c(res1,res2),collapse=" ")))
+	#print(paste("The parts objectives are ",paste(zzz[-1],collapse=" ")))
+	ttt=list(initial_U,initial_V,U,V,objs,objs.parts,rmse,X1,extraOut)
+	names(ttt)=c("initial_U","initial_V","U","V","objs","objs.parts","rmse","X1","extraOut")
+	return(ttt)
+}
+
+#################
