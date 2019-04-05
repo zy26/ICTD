@@ -7,6 +7,17 @@ This method is described in the publication from Biorxiv, 2018 available at http
 
 
 ```
+#install dependent pkg
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("impute", version = "3.8")
+BiocManager::install("GO.db", version = "3.8")
+BiocManager::install("sva", version = "3.8")
+
+rforge <- "http://r-forge.r-project.org"
+install.packages("estimate", repos=rforge, dependencies=TRUE)
+
+#install ICTD
 install.packages("devtools")
 devtools::install_github("zy26/ICTD")
 ```
