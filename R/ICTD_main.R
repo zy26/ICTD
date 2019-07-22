@@ -11,11 +11,11 @@ if(length(colnames(data.matrix)) == 0) {
 data.matrix <- rm_zero_row(data.matrix)
 
 ###########  RNAseq log(X+1)
-d.matrix<-log(data.matrix + 1)
-d.matrix<-as.matrix(d.matrix)
+#d.matrix<-log(data.matrix + 1)
+#d.matrix<-as.matrix(d.matrix)
 d.matrix <- data.matrix #log will cause bad performance sometimes!!!!!!!!!72056,81861
 ########### normalize data2, same for RNA-seq data
-data01<-normalize_data2(d.matrix)
+#data01<-normalize_data2(d.matrix)
 data0<-d.matrix
 	
 ########### prepare input data for cancer module identification
@@ -51,7 +51,7 @@ tg_R1_lists<-R1_filter_step1_results_new[[4]]
 #CTES<-c(R1_selectedCM_step2_results_HCTES[[1]],R1_selectedCM_step2_results_HCTES[[2]])
 
 #R1_selectedCM_step2_results_Hierarchical_CTES<-Step2plus_Celltype_marker_Hierarchical_CTES(tg_R1_lists=tg_R1_lists,data_CORS_cancer=data_CORS_cancer,data.matrix=data.matrix,tg_R1_list_stat=R1_filter_step1_results_new[[3]][[2]],cell_type_enrich_cut=0.45,tg_R1_cut=6)
-R1_selectedCM_step2_results_Hierarchical_CTES<- Step2plus_Celltype_marker_Hierarchical_CTES3(tg_R1_lists,data_CORS_cancer,data.matrix,tg_R1_list_stat=R1_filter_step1_results_new[[3]][[2]],cell_type_enrich_cut=0.45,tg_R1_cut=6,ext_cn=10,CT_balance=1)  #72056_ext=6, ctBALANCE=1
+R1_selectedCM_step2_results_Hierarchical_CTES<- Step2plus_Celltype_marker_Hierarchical_CTES3(tg_R1_lists=tg_R1_lists,data_CORS_cancer=data_CORS_cancer,data.matrix=data.matrix,tg_R1_list_stat=R1_filter_step1_results_new[[3]][[2]],cell_type_enrich_cut=0.45,tg_R1_cut=6,ext_cn=10,CT_balance=1)  #72056_ext=6, ctBALANCE=1
 CTES3<-R1_selectedCM_step2_results_Hierarchical_CTES[[1]]
 
 
