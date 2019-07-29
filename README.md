@@ -13,6 +13,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("impute", version = "3.8")
 BiocManager::install("GO.db", version = "3.8")
 BiocManager::install("sva", version = "3.8")
+BiocManager::install("preprocessCore", version = "3.8")
 
 rforge <- "http://r-forge.r-project.org"
 install.packages("estimate", repos=rforge, dependencies=TRUE)
