@@ -11,9 +11,13 @@ if(length(colnames(data.matrix)) == 0) {
 data.matrix <- rm_zero_row(data.matrix)
 
 ###########  RNAseq log(X+1)
-#d.matrix<-log(data.matrix + 1)
-#d.matrix<-as.matrix(d.matrix)
-d.matrix <- data.matrix #log will cause bad performance sometimes!!!!!!!!!72056,81861
+if(max(data.matrix) > 20){
+	d.matrix<-log(data.matrix + 1)
+	d.matrix<-as.matrix(d.matrix)
+}else{
+	d.matrix <- as.matrix(data.matrix)
+}
+#d.matrix <- data.matrix #log will cause bad performance sometimes!!!!!!!!!72056,81861
 ########### normalize data2, same for RNA-seq data
 #data01<-normalize_data2(d.matrix)
 data0<-d.matrix
@@ -81,15 +85,19 @@ root_leaf[["Root_CT"]]
 root_leaf[["Other_leat_CT"]]
 tg_possible_base_ids<-sort(c(root_leaf[["Leaf_CT"]],root_leaf[["Other_leat_CT"]]))
 NMF_selected_R1<-select_R_base(CTES3,tg_possible_base_ids)		#just like tg_selected_R4_RR
+c10_Hclust_CTES<-Compute_Rbase_SVD(data.matrix,NMF_selected_R1)
+Prop <- c10_Hclust_CTES
+colnames(Prop) <- colnames(data.matrix)
 
 #ICTD
-qnmf_result<-NMF_method1_test_version3_pkg(tg_list=NMF_selected_R1,data_ng=data.matrix0_s,data_normalized=data_23_s, max_ES_cut=0.3,NMF_RR=10)
-NMF_indi_all = qnmf_result[[3]][["NMF_indi_all"]]
-X1 = qnmf_result[[1]][["X1"]]
-V = qnmf_result[[1]][["V"]]
+#qnmf_result<-NMF_method1_test_version3_pkg(tg_list=NMF_selected_R1,data_ng=data.matrix0_s,data_normalized=data_23_s, max_ES_cut=0.3,NMF_RR=10)
+#NMF_indi_all = qnmf_result[[3]][["NMF_indi_all"]]
+#X1 = qnmf_result[[1]][["X1"]]
+#V = qnmf_result[[1]][["V"]]
 
 
-return(list(ictd.proportion=V,ictd.marker.R1=tg_R1_lists))
+#return(list(ictd.proportion=V,ictd.marker.R1=tg_R1_lists))
+return(list(ictd.proportion=Prop,ictd.marker=NMF_selected_R1))
 
 }	
 
