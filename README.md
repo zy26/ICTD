@@ -4,6 +4,7 @@ This method is described in the publication from Biorxiv, 2018 available at http
 
 The web application demo is available at https://wnchang.shinyapps.io/ICTD_server/
 
+![image](https://github.com/zy26/ICTD/blob/master/img/web_app.png)
 
 # Installation
 
