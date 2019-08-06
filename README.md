@@ -37,5 +37,7 @@ ictd_result <- ICTD(data_bulk)
 #Return value is a list, which the first element is the predicted proportion and 
 #the second element is the predicted markers of ICTD
 ```
+# Dependencies
 
+We also provide a Docker image to recreate the compute environment. See the Dockerfile for more details.(Coming soon!)
 
