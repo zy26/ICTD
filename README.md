@@ -26,6 +26,20 @@ install.packages("devtools")
 devtools::install_github("zy26/ICTD")
 ```
 
+
+
+Note : For old R version which cannot install 'BiocManager', please use below command to install the dependency.
+```
+source("https://bioconductor.org/biocLite.R")
+biocLite("impute")
+biocLite("GO.db")
+biocLite("sva")
+biocLite("preprocessCore")
+
+rforge <- "http://r-forge.r-project.org"
+install.packages("estimate", repos=rforge, dependencies=TRUE)
+```
+
 # Example
 
 ```
