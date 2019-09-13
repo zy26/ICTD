@@ -12,7 +12,7 @@ BCV_ttest2_NA<-function(data0,rounds=20,slice0=2,maxrank0=30,msep_cut=0.001)
   pp<-c()
   ddd<-apply(fff_cc,2,mean,na.rm=T)
   #print("bcv ttest2 ddd:")
-  print(ddd)
+  #print(ddd)
   
   ddd<-ddd/sum(ddd)
   for(kk in 1:(ncol(fff_cc)-1))
