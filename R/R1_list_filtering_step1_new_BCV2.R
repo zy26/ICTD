@@ -1,7 +1,7 @@
 
 BCV_ttest2_NA<-function(data0,rounds=20,slice0=2,maxrank0=30,msep_cut=0.001)
 {
-  print("call new BCV test2 function !!!")
+  #print("call new BCV test2 function !!!")
   x<-data0
   fff_cc<-c()
   for(kk in 1:rounds)
@@ -147,3 +147,4 @@ R1_list_filtering_step1_new_BCV2 <- function (list_c2, data_CORS_cancer, max_cut
                                    "R1_marker_list_f3.5_cell_enrich_stat")
   return(Filter_1_result_list)
 }
+
