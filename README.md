@@ -2,7 +2,7 @@
 
 This method is described in the publication from Biorxiv, 2018 available at https://www.biorxiv.org/content/10.1101/426593v2
 
-The web application demo is available at https://wnchang.shinyapps.io/ICTD_server/
+The web application demo is available at https://ictd.ccbb.iupui.edu
 
 ![image](https://github.com/zy26/ICTD/blob/master/img/web_app.png)
 
