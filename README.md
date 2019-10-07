@@ -53,5 +53,10 @@ ictd_result <- ICTD(data_bulk)
 ```
 # Dependencies
 
-We also provide a Docker image to recreate the compute environment. See the Dockerfile for more details.(Coming soon!)
+We also provide a Docker image to recreate the compute environment. See the Dockerfile for more details.
 
+https://cloud.docker.com/u/wnchang/repository/docker/wnchang/ictd
+
+Using the Docker image could void the conflict issue that R version and several R packages version confict. 
+
+For more details about the Docker, please see Docker documentation page https://docs.docker.com/.
