@@ -74,7 +74,7 @@ Department of Medical & Molecular Genetics, Indiana University School of Medicin
 
 We also provide a Docker image to recreate the compute environment. See the Dockerfile for more details.
 
-https://cloud.docker.com/u/wnchang/repository/docker/wnchang/ictd
+https://hub.docker.com/r/wnchang/ictd
 
 Using the Docker image could void the conflict issue that R version and several R packages version confict. 
 
