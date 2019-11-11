@@ -51,6 +51,25 @@ ictd_result <- ICTD(data_bulk)
 #Return value is a list, which the first element is the predicted proportion and 
 #the second element is the predicted markers of ICTD
 ```
+
+# Questions & Problems
+
+If you have any questions or problems when using ICTD, please feel free to open a new issue [here](https://github.com/zy26/ICTD/issues). We will fix the new issue ASAP.  You can also email the maintainers and authors below.
+
+- [Wennan Chang](https://zcslab.github.io/people/wennan/)
+(wnchang@iu.edu)
+
+PhD candidate at BDR group, Indiana University School of Medicine
+
+- [Chi Zhang](https://medicine.iu.edu/departments/genetics/faculty/27057/zhang-chi/)
+(czhang87@iu.edu)
+
+Assistant Professor
+
+Department of Medical & Molecular Genetics, Indiana University School of Medicine
+
+
+
 # Dependencies
 
 We also provide a Docker image to recreate the compute environment. See the Dockerfile for more details.
