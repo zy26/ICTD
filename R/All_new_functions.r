@@ -530,7 +530,6 @@ return(list_cc)
 }
 
 
-=======
 find_cancer_module_new<-function(str,Fdata_t, Fdata_n="NO", purity="NO")
 {
         #backup data
