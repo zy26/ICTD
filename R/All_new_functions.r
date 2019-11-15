@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 find_cancer_module_new<-function(str,Fdata_t, Fdata_n="NO", purity="NO")
 {
@@ -530,6 +531,8 @@ return(list_cc)
 }
 
 
+=======
+>>>>>>> parent of eb82727... Add files via upload
 find_cancer_module_new<-function(str,Fdata_t, Fdata_n="NO", purity="NO")
 {
         #backup data
@@ -753,7 +756,11 @@ names(tg_marker_lists)<-names(list_c2[[1]])
 pp_all<-c()
 for(i in 1:length(tg_marker_lists))
 {
+<<<<<<< HEAD
         pp<-sum(BCV_ttest2(data_CORS_cancer[tg_marker_lists[[i]],],maxrank0=20)<0.001, na.rm=T)
+=======
+        pp<-sum(BCV_ttest2(data_CORS_cancer[tg_marker_lists[[i]],],maxrank0=20)<0.001)
+>>>>>>> parent of eb82727... Add files via upload
         pp_all<-c(pp_all,pp)
 }
 pp_R1_marker_list_f1<-clean_rank1_module_new(data_CORS_cancer,tg_marker_lists,pp_all,st0=6)
@@ -821,7 +828,11 @@ R1_marker_list_f2.5<-R1_marker_list_f2.5_stat[[1]]
 pp_all<-c()
 for(i in 1:length(R1_marker_list_f2.5))
 {
+<<<<<<< HEAD
         pp<-sum(BCV_ttest(data_CORS_cancer[R1_marker_list_f2.5[[i]],],maxrank0=20)<0.001, na.rm=T)
+=======
+        pp<-sum(BCV_ttest(data_CORS_cancer[R1_marker_list_f2.5[[i]],],maxrank0=20)<0.001)
+>>>>>>> parent of eb82727... Add files via upload
         pp_all<-c(pp_all,pp)
 }
 pp_R1_marker_list_f3<-clean_rank1_module(data_CORS_cancer,R1_marker_list_f2.5,pp_all,st0=6)
@@ -1061,4 +1072,7 @@ return(list_cc)
 }
 
 
+<<<<<<< HEAD
 >>>>>>> eb82727b8036c47ebe0744f8c751a50bde2cac36
+=======
+>>>>>>> parent of eb82727... Add files via upload
