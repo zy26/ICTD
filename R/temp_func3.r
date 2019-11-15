@@ -65,7 +65,7 @@ names(tg_marker_lists)<-names(list_c2[[1]])
 pp_all<-c()
 for(i in 1:length(tg_marker_lists))
 {
-        pp<-sum(BCV_ttest2(data_CORS_cancer[tg_marker_lists[[i]],],maxrank0=20,msep_cut=0.01)<0.001)     
+        pp<-sum(BCV_ttest2(data_CORS_cancer[tg_marker_lists[[i]],],maxrank0=20,msep_cut=0.01)<0.001, na.rm=T)     
         pp_all<-c(pp_all,pp)
 }
 pp_R1_marker_list_f1<-clean_rank1_module_new(data_CORS_cancer,tg_marker_lists,pp_all,st0=6)
@@ -133,7 +133,7 @@ R1_marker_list_f2.5<-R1_marker_list_f2.5_stat[[1]]
 pp_all<-c()
 for(i in 1:length(R1_marker_list_f2.5))
 {
-        pp<-sum(BCV_ttest2(data_CORS_cancer[R1_marker_list_f2.5[[i]],],maxrank0=20,msep_cut=0.01)<0.001)     
+        pp<-sum(BCV_ttest2(data_CORS_cancer[R1_marker_list_f2.5[[i]],],maxrank0=20,msep_cut=0.01)<0.001, na.rm=T)     
         pp_all<-c(pp_all,pp)
 }
 pp_R1_marker_list_f3<-clean_rank1_module(data_CORS_cancer,R1_marker_list_f2.5,pp_all,st0=6)
